@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Arrecadação</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #101010;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+
+header {
+    background: #1c1c1c;
+    border-left: 5px solid #8b0000;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: #c00000;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #bbb;
+}
+
+.card {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #c00000;
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.alimento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid #333;
+    padding: 13px 0;
+}
+
+.alimento label {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.alimento input {
+    width: 110px;
+    padding: 11px;
+    background: #101010;
+    border: 1px solid #555;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+.alimento input:focus {
+    outline: none;
+    border-color: #c00000;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #b00000;
+}
+
+.resultado {
+    text-align: center;
+    background: #280909;
+    border: 1px solid #8b0000;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.resultado h3 {
+    color: #ddd;
+    font-size: 17px;
+}
+
+.numero {
+    color: #ff3333;
+    font-size: 55px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.info {
+    color: #ccc;
+    line-height: 1.7;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.sobras {
+    margin-top: 20px;
+}
+
+.sobras h3 {
+    color: #c00000;
+    margin-bottom: 12px;
+}
+
+.sobra-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid #333;
+    gap: 10px;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    font-size: 12px;
+}
+
+@media(max-width:480px) {
+    body {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .alimento input {
+        width: 90px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    header, .card {
+        background: white;
+        color: black;
+    }
+
+    button {
+        display: none;
+    }
+
+    .alimento label, .sobra-item {
+        color: black;
+    }
+
+    .alimento input {
+        color: black;
+        border-color: #aaa;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>CONTROLE DE ARRECADAÇÃO</h1>
+    <p>Sistema de contagem e montagem de cestas básicas</p>
+</header>
+
+<div class="card">
+    <h2>ALIMENTOS ARRECADADOS</h2>
+
+    <div id="listaAlimentos"></div>
+
+    <button onclick="calcular()">
+        CALCULAR CESTAS BÁSICAS
+    </button>
+</div>
+
+<div class="card">
+    <h2>RESULTADO DA ARRECADAÇÃO</h2>
+
+    <div class="resultado">
+        <h3>VOCÊ CONSEGUE MONTAR</h3>
+        <div class="numero" id="totalCestas">0</div>
+        <h3>CESTAS BÁSICAS</h3>
+    </div>
+
+    <div class="info" id="limitador">
+        Informe as quantidades dos alimentos para iniciar.
+    </div>
+
+    <div class="sobras" id="sobras"></div>
+
+    <button onclick="window.print()">
+        IMPRIMIR RELATÓRIO
+    </button>
+</div>
+
+<footer>
+    Controle de Arrecadação de Alimentos
+</footer>
+
+</div>
+
+<script>
+
+const alimentos = [
+    "Arroz",
+    "Feijão",
+    "Óleo",
+    "Açúcar",
+    "Café torrado e moído",
+    "Macarrão",
+    "Farinha de trigo",
+    "Fubá",
+    "Sal",
+    "Molho ou extrato de tomate",
+    "Bolacha"
+];
+
+const lista = document.getElementById("listaAlimentos");
+
+function carregar() {
+    alimentos.forEach((nome, i) => {
+        const valor = localStorage.getItem("alimento_" + i) || "";
+
+        lista.innerHTML += `
+            <div class="alimento">
+                <label>${nome}</label>
+                <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    id="qtd_${i}"
+                    placeholder="0"
+                    value="${valor}"
+                    oninput="salvar()"
+                >
+            </div>
+        `;
+    });
+}
+
+function salvar() {
+    alimentos.forEach((nome, i) => {
+        const campo = document.getElementById("qtd_" + i);
+        if (campo) {
+            localStorage.setItem("alimento_" + i, campo.value);
+        }
+    });
+}
+
+function calcular() {
+
+    salvar();
+
+    let quantidades = alimentos.map((nome, i) => {
+        return Math.max(0, Math.floor(
+            Number(document.getElementById("qtd_" + i).value) || 0
+        ));
+    });
+
+    let menor = Math.min(...quantidades);
+    let indice = quantidades.indexOf(menor);
+
+    document.getElementById("totalCestas").innerText = menor;
+
+    document.getElementById("limitador").innerHTML =
+        `<strong>Alimento que limita a montagem:</strong><br>
+        ${alimentos[indice]} (${menor} unidades disponíveis).`;
+
+    let html = "<h3>SALDO DE ALIMENTOS APÓS A MONTAGEM</h3>";
+
+    alimentos.forEach((nome, i) => {
+        let sobra = quantidades[i] - menor;
+
+        html += `
+            <div class="sobra-item">
+                <span>${nome}</span>
+                <strong>${sobra} unidades</strong>
+            </div>
+        `;
+    });
+
+    document.getElementById("sobras").innerHTML = html;
+}
+
+carregar();
+calcular();
+
+</script>
+
+</body>
+</html>
