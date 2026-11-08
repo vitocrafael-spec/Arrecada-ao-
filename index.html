@@ -4,20 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#100c0d">
-<title>Gestão de Arrecadação</title>
+<meta name="theme-color" content="#100000">
+<title>Insanos MC | Controle de Arrecadação</title>
 
 <style>
 :root {
-    --bg: #100c0d;
-    --panel: #1b1517;
-    --panel2: #241a1d;
-    --red: #a51e32;
-    --red2: #d12b43;
-    --text: #f5eeee;
-    --muted: #a99b9e;
-    --border: #39272c;
-    --green: #48c58a;
+    --red: #a20d20;
+    --red-light: #df263d;
+    --black: #090909;
+    --panel: #171313;
+    --border: #382326;
+    --white: #fff;
+    --gray: #aaa;
+    --green: #47c78b;
 }
 
 * {
@@ -27,132 +26,131 @@
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, Arial, sans-serif;
-    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, sans-serif;
 }
 
-button, input {
-    font: inherit;
+/* CAPA */
+
+.hero {
+    min-height: 340px;
+    position: relative;
+    background:
+        linear-gradient(90deg,
+            rgba(0,0,0,.96),
+            rgba(15,0,0,.72),
+            rgba(0,0,0,.65)),
+        url("https://insanosmc.com.br/assets/img/banner/novo_banner.webp")
+        center 48% / cover no-repeat;
+    border-bottom: 4px solid var(--red);
 }
 
-.container {
-    width: min(1100px, 94%);
+.hero-content {
+    max-width: 1150px;
     margin: auto;
-}
-
-/* CABEÇALHO */
-
-header {
-    background: linear-gradient(120deg, #211316, #100c0d);
-    border-bottom: 1px solid var(--border);
-    padding: 28px 0;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.brand {
+    padding: 35px 20px;
+    min-height: 340px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 35px;
 }
 
 .logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(145deg, #bd243d, #680f20);
-    display: grid;
-    place-items: center;
-    font-size: 25px;
-    box-shadow: 0 5px 20px #a51e3240;
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px #000);
+    flex-shrink: 0;
 }
 
-.brand h1 {
-    font-size: 21px;
-    letter-spacing: .5px;
+.hero-text h1 {
+    font-size: clamp(25px, 4vw, 43px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 3px 8px #000;
 }
 
-.brand p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 5px;
+.hero-text h1 span {
+    color: var(--red-light);
 }
 
-.status {
+.hero-text p {
+    color: #ddd;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.hero-label {
+    display: inline-block;
+    background: var(--red);
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin-top: 18px;
     font-size: 11px;
-    color: var(--green);
-    border: 1px solid #276b4e;
-    background: #173326;
-    padding: 8px 12px;
-    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* CONTEÚDO */
 
-main {
-    padding: 30px 0 50px;
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 18px 50px;
 }
 
-.welcome {
-    margin-bottom: 24px;
+.section-title {
+    margin-bottom: 20px;
 }
 
-.welcome h2 {
-    font-size: 25px;
-    margin-bottom: 7px;
+.section-title h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+    border-left: 4px solid var(--red);
+    padding-left: 12px;
 }
 
-.welcome p {
-    color: var(--muted);
-    font-size: 14px;
+.section-title p {
+    color: var(--gray);
+    margin-top: 8px;
+    font-size: 13px;
 }
 
-/* INDICADORES */
+/* DASHBOARD */
 
 .dashboard {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    margin-bottom: 22px;
+    margin-bottom: 30px;
 }
 
 .metric {
-    background: var(--panel);
+    background: linear-gradient(145deg, #21191a, #120e0e);
     border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 13px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 12px;
+    padding: 23px;
 }
 
 .metric-label {
-    color: var(--muted);
-    font-size: 12px;
+    color: var(--gray);
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: .7px;
+    letter-spacing: 1px;
 }
 
 .metric-value {
-    font-size: 31px;
-    font-weight: 800;
-    margin-top: 10px;
-}
-
-.metric small {
-    color: var(--muted);
-    font-size: 12px;
+    font-size: 34px;
+    font-weight: 900;
+    margin-top: 12px;
 }
 
 .metric.highlight {
-    background: linear-gradient(130deg, #591521, #271317);
-    border-color: #852237;
+    background: linear-gradient(135deg, #650b19, #24070c);
+    border-color: #a51a30;
 }
 
 .metric.highlight .metric-value {
@@ -160,55 +158,40 @@ main {
     font-size: 42px;
 }
 
-/* PAINÉIS */
+/* PAINEL */
 
 .panel {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 23px;
-    margin-bottom: 20px;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 22px;
 }
 
-.panel-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+.panel h3 {
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
-.panel-heading h3 {
-    font-size: 17px;
-}
-
-.panel-heading p {
-    color: var(--muted);
+.panel-description {
+    color: var(--gray);
     font-size: 12px;
-    margin-top: 5px;
-}
-
-.tag {
-    background: #3a1b22;
-    color: #ff8293;
-    padding: 7px 10px;
-    border-radius: 6px;
-    font-size: 11px;
-    white-space: nowrap;
+    margin-top: 7px;
+    margin-bottom: 22px;
 }
 
 /* ALIMENTOS */
 
-.food-list {
+.food-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 
-.food-item {
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+.food {
+    background: #211a1b;
+    border: 1px solid #38282a;
+    border-radius: 8px;
     padding: 14px;
     display: flex;
     align-items: center;
@@ -217,151 +200,146 @@ main {
     transition: .2s;
 }
 
-.food-item:focus-within {
-    border-color: var(--red2);
+.food:focus-within {
+    border-color: var(--red-light);
 }
 
 .food-name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .food-number {
-    color: var(--muted);
+    color: #777;
     font-size: 10px;
     margin-top: 5px;
 }
 
-.input-area {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.food-item input {
-    width: 85px;
-    background: #100c0d;
-    border: 1px solid #4b3036;
-    border-radius: 7px;
-    padding: 10px 7px;
+.food input {
+    width: 90px;
+    background: #0d0b0b;
+    border: 1px solid #503034;
+    border-radius: 6px;
+    padding: 11px 5px;
     color: white;
     text-align: center;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
     outline: none;
 }
 
-.food-item input:focus {
-    border-color: var(--red2);
+.food input:focus {
+    border-color: var(--red-light);
 }
 
 .unit {
-    color: var(--muted);
-    font-size: 11px;
+    color: #999;
+    font-size: 10px;
 }
 
 /* BOTÕES */
 
-.buttons {
+.actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
-.btn {
-    border: 0;
-    border-radius: 8px;
-    padding: 12px 17px;
-    cursor: pointer;
-    font-weight: bold;
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 13px 18px;
     font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
     transition: .2s;
 }
 
-.btn:hover {
+button:hover {
     transform: translateY(-2px);
     filter: brightness(1.2);
 }
 
 .btn-red {
-    background: linear-gradient(120deg, #bd263e, #831629);
+    background: linear-gradient(120deg, #c21d36, #7b091b);
     color: white;
 }
 
 .btn-dark {
-    background: #332126;
-    color: #f2dfe3;
-    border: 1px solid #55303a;
+    background: #292020;
+    color: white;
+    border: 1px solid #533137;
 }
 
 .btn-reset {
-    background: #28191c;
-    color: #ff7185;
-    border: 1px solid #702536;
+    background: #301217;
+    color: #ff7284;
+    border: 1px solid #852537;
 }
 
 /* RESULTADO */
 
-.result-box {
-    background: linear-gradient(130deg, #32131b, #1d1114);
-    border: 1px solid #762237;
+.result {
+    background:
+        linear-gradient(135deg, #480a15, #16090c);
+    border: 1px solid #a21b31;
     border-radius: 12px;
-    padding: 26px;
+    padding: 30px;
     text-align: center;
 }
 
-.result-box p {
-    color: #d6b7bd;
+.result-label {
     font-size: 12px;
-    letter-spacing: 1.5px;
+    color: #e2b8be;
+    letter-spacing: 2px;
     font-weight: bold;
 }
 
 .result-number {
-    color: #ff4c68;
-    font-size: 65px;
+    color: #ff4963;
+    font-size: 75px;
     font-weight: 900;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
-.result-box span {
-    color: #d6b7bd;
+.result-caption {
     font-size: 13px;
+    color: #e2b8be;
 }
 
 .limiter {
-    background: #28191c;
-    border: 1px solid #573039;
-    border-radius: 9px;
-    padding: 15px;
-    margin-top: 17px;
+    background: #24191b;
+    border-left: 4px solid var(--red);
+    padding: 17px;
+    border-radius: 7px;
+    margin-top: 18px;
     font-size: 13px;
     line-height: 1.7;
 }
 
 .limiter strong {
-    color: #ff7185;
+    color: #ff6479;
 }
 
 /* SOBRAS */
 
 .leftovers {
-    margin-top: 23px;
+    margin-top: 25px;
 }
 
 .leftovers h4 {
-    margin-bottom: 12px;
-    font-size: 14px;
+    font-size: 15px;
+    margin-bottom: 13px;
 }
 
 .leftover-row {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    padding: 11px 5px;
+    padding: 12px 5px;
     border-bottom: 1px solid var(--border);
     font-size: 13px;
+    gap: 10px;
 }
 
 .leftover-row strong {
@@ -371,56 +349,62 @@ main {
 /* RODAPÉ */
 
 footer {
-    border-top: 1px solid var(--border);
-    padding: 22px 0;
+    background: #120d0e;
+    border-top: 2px solid var(--red);
+    padding: 25px;
     text-align: center;
-    color: #786a6d;
+    color: #999;
     font-size: 11px;
+    line-height: 1.8;
+}
+
+footer strong {
+    color: #ddd;
 }
 
 /* RESPONSIVO */
 
-@media(max-width: 700px) {
+@media(max-width:650px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 25px 15px;
+    }
+
+    .logo {
+        width: 145px;
+        height: 145px;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        min-height: auto;
+    }
+
     .dashboard {
         grid-template-columns: 1fr;
         gap: 10px;
     }
 
-    .metric {
-        padding: 16px;
-    }
-
-    .metric-value {
-        font-size: 25px;
-    }
-
-    .metric.highlight .metric-value {
-        font-size: 36px;
-    }
-
-    .food-list {
+    .food-grid {
         grid-template-columns: 1fr;
     }
 
-    .header-content {
-        align-items: flex-start;
-    }
-
-    .status {
-        display: none;
-    }
-
     .panel {
-        padding: 16px;
+        padding: 17px;
     }
 
-    .welcome h2 {
-        font-size: 21px;
-    }
-
-    .buttons .btn {
+    .actions button {
         flex: 1;
         min-width: 130px;
+    }
+
+    .result-number {
+        font-size: 60px;
     }
 }
 
@@ -432,40 +416,32 @@ footer {
         color: black;
     }
 
-    header, .panel, .metric {
-        background: white;
-        color: black;
-        border: 1px solid #ccc;
-        box-shadow: none;
+    .hero {
+        background: #222;
+        print-color-adjust: exact;
     }
 
-    .brand p, .welcome p, .metric-label,
-    .metric small, .food-number, .unit,
-    .result-box p, .result-box span {
-        color: #444;
+    .actions {
+        display: none;
     }
 
-    .food-item, .result-box, .limiter {
+    .panel, .metric, .food {
         background: white;
         color: black;
         border: 1px solid #ccc;
     }
 
-    .food-item input {
+    .food input {
         color: black;
         background: white;
     }
 
-    .result-number, .metric.highlight .metric-value {
-        color: #900;
+    .result {
+        print-color-adjust: exact;
     }
 
-    .buttons, .status {
-        display: none !important;
-    }
-
-    footer {
-        color: #555;
+    .leftover-row {
+        color: black;
     }
 }
 </style>
@@ -473,98 +449,127 @@ footer {
 
 <body>
 
-<header>
-    <div class="container header-content">
-        <div class="brand">
-            <div class="logo">♥</div>
-            <div>
-                <h1>GESTÃO DE ARRECADAÇÃO</h1>
-                <p>Controle de alimentos e montagem de cestas básicas</p>
+<!-- CAPA COM LOGO E IMAGEM -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <img
+            class="logo"
+            src="https://insanosmc.com.br/assets/img/escudo.png"
+            alt="Escudo Insanos MC"
+        >
+
+        <div class="hero-text">
+
+            <h1>INSANOS <span>MC</span></h1>
+
+            <p>
+                CONTROLE DE ARRECADAÇÃO<br>
+                GESTÃO DE ALIMENTOS E MONTAGEM DE CESTAS BÁSICAS
+            </p>
+
+            <div class="hero-label">
+                AÇÃO SOCIAL • SOLIDARIEDADE
             </div>
+
         </div>
-        <div class="status">● SISTEMA OPERACIONAL</div>
+
     </div>
+
 </header>
 
 <main class="container">
 
-    <div class="welcome">
-        <h2>Painel de controle</h2>
-        <p>Informe os alimentos arrecadados e acompanhe quantas cestas podem ser montadas.</p>
+    <div class="section-title">
+        <h2>Painel de arrecadação</h2>
+        <p>Controle os alimentos recebidos e acompanhe o resultado da campanha.</p>
     </div>
+
+    <!-- INDICADORES -->
 
     <section class="dashboard">
 
         <div class="metric">
-            <div class="metric-label">Produtos cadastrados</div>
+            <div class="metric-label">Produtos controlados</div>
             <div class="metric-value">11</div>
-            <small>Itens da cesta básica</small>
         </div>
 
         <div class="metric">
-            <div class="metric-label">Total de unidades arrecadadas</div>
+            <div class="metric-label">Total arrecadado</div>
             <div class="metric-value" id="totalUnidades">0</div>
-            <small>Somatório dos alimentos</small>
         </div>
 
         <div class="metric highlight">
             <div class="metric-label">Cestas possíveis</div>
             <div class="metric-value" id="miniCestas">0</div>
-            <small>Cestas básicas completas</small>
         </div>
 
     </section>
 
+    <!-- ARRECADAÇÃO -->
+
     <section class="panel">
 
-        <div class="panel-heading">
-            <div>
-                <h3>📦 Controle de alimentos</h3>
-                <p>Digite a quantidade arrecadada de cada produto.</p>
-            </div>
-            <div class="tag">11 PRODUTOS</div>
-        </div>
+        <h3>📦 Alimentos arrecadados</h3>
 
-        <div class="food-list" id="listaAlimentos"></div>
+        <p class="panel-description">
+            Digite quantas unidades de cada alimento foram recebidas.
+        </p>
 
-        <div class="buttons">
-            <button class="btn btn-red" onclick="calcular()">
-                ↻ ATUALIZAR CÁLCULO
+        <div class="food-grid" id="listaAlimentos"></div>
+
+        <div class="actions">
+
+            <button class="btn-red" onclick="calcular()">
+                ATUALIZAR CÁLCULO
             </button>
 
-            <button class="btn btn-reset" onclick="zerar()">
-                ✕ ZERAR CONTAGEM
+            <button class="btn-reset" onclick="zerar()">
+                ZERAR CONTAGEM
             </button>
+
         </div>
 
     </section>
 
+    <!-- RESULTADO -->
+
     <section class="panel">
 
-        <div class="panel-heading">
-            <div>
-                <h3>🏆 Resultado da arrecadação</h3>
-                <p>Quantidade de cestas completas que podem ser montadas.</p>
-            </div>
-            <div class="tag">CÁLCULO AUTOMÁTICO</div>
-        </div>
+        <h3>🏆 Resultado da campanha</h3>
 
-        <div class="result-box">
-            <p>VOCÊ CONSEGUE MONTAR</p>
+        <p class="panel-description">
+            Quantidade de cestas básicas completas disponíveis.
+        </p>
+
+        <div class="result">
+
+            <div class="result-label">
+                VOCÊ CONSEGUE MONTAR
+            </div>
+
             <div class="result-number" id="totalCestas">0</div>
-            <span>CESTAS BÁSICAS COMPLETAS</span>
+
+            <div class="result-caption">
+                CESTAS BÁSICAS COMPLETAS
+            </div>
+
         </div>
 
         <div class="limiter" id="limitador">
-            Aguardando informações da arrecadação.
+            Informe as quantidades arrecadadas para visualizar o resultado.
         </div>
 
         <div class="leftovers" id="sobras"></div>
 
-        <div class="buttons">
-            <button class="btn btn-dark" onclick="window.print()">
-                ▤ IMPRIMIR RELATÓRIO
+        <div class="actions">
+
+            <button class="btn-dark" onclick="window.print()">
+                IMPRIMIR RELATÓRIO
             </button>
+
         </div>
 
     </section>
@@ -572,9 +577,9 @@ footer {
 </main>
 
 <footer>
-    SISTEMA DE CONTROLE DE ARRECADAÇÃO • CESTAS BÁSICAS
-    <br><br>
-    Seus dados são salvos automaticamente neste navegador.
+    <strong>INSANOS MC</strong><br>
+    CONTROLE DE ARRECADAÇÃO E AÇÃO SOCIAL<br>
+    Ninguém fica pra trás.
 </footer>
 
 <script>
@@ -599,17 +604,20 @@ function carregar() {
 
     alimentos.forEach((nome, i) => {
 
-        const valor = localStorage.getItem("arrecadacao_" + i) || "";
+        const valor =
+            localStorage.getItem("arrecadacao_" + i) || "";
 
         lista.innerHTML += `
-            <div class="food-item">
+            <div class="food">
 
                 <div>
                     <div class="food-name">${nome}</div>
-                    <div class="food-number">PRODUTO ${String(i+1).padStart(2,"0")}</div>
+                    <div class="food-number">
+                        PRODUTO ${String(i + 1).padStart(2,"0")}
+                    </div>
                 </div>
 
-                <div class="input-area">
+                <div style="display:flex;align-items:center;gap:6px">
 
                     <input
                         type="number"
@@ -636,12 +644,12 @@ function obterQuantidades() {
 
     return alimentos.map((nome, i) => {
 
-        const campo = document.getElementById("qtd_" + i);
-
-        let valor = Number(campo.value);
+        const valor = Number(
+            document.getElementById("qtd_" + i).value
+        );
 
         if (!Number.isFinite(valor) || valor < 0) {
-            valor = 0;
+            return 0;
         }
 
         return Math.floor(valor);
@@ -671,10 +679,14 @@ function calcular() {
 
     salvar();
 
-    const total = quantidades.reduce((a, b) => a + b, 0);
+    const total = quantidades.reduce(
+        (a, b) => a + b, 0
+    );
 
     document.getElementById("totalUnidades").innerText =
         total.toLocaleString("pt-BR");
+
+    // Cada cesta precisa de 1 unidade de cada produto.
 
     const menor = Math.min(...quantidades);
 
@@ -682,30 +694,33 @@ function calcular() {
 
     document.getElementById("miniCestas").innerText = menor;
 
-    const limitadores = [];
+    // Identifica os alimentos limitadores.
 
-    quantidades.forEach((qtd, i) => {
-
-        if (qtd === menor) {
-            limitadores.push(alimentos[i]);
-        }
-
-    });
+    const limitadores = alimentos.filter(
+        (nome, i) => quantidades[i] === menor
+    );
 
     if (total === 0) {
 
         document.getElementById("limitador").innerHTML =
-            "Informe as quantidades arrecadadas para visualizar o resultado.";
+            "Aguardando o cadastro das quantidades arrecadadas.";
 
     } else {
 
-        document.getElementById("limitador").innerHTML =
-            `<strong>ALIMENTO(S) QUE LIMITAM A MONTAGEM:</strong><br>
-            ${limitadores.join(", ")} — ${menor} unidade(s) disponível(is).`;
+        document.getElementById("limitador").innerHTML = `
+            <strong>ALIMENTO(S) QUE LIMITAM A MONTAGEM:</strong><br>
+            ${limitadores.join(", ")}
+            <br>
+            Quantidade disponível: ${menor} unidade(s).
+        `;
 
     }
 
-    let html = "<h4>📊 SALDO DE ALIMENTOS APÓS A MONTAGEM</h4>";
+    // Calcula as sobras.
+
+    let html = `
+        <h4>📊 SALDO DE ALIMENTOS APÓS A MONTAGEM</h4>
+    `;
 
     alimentos.forEach((nome, i) => {
 
@@ -727,7 +742,9 @@ function calcular() {
 function zerar() {
 
     const confirmar = confirm(
-        "ATENÇÃO!\n\nDeseja realmente zerar toda a contagem?\n\nTodas as quantidades arrecadadas serão apagadas."
+        "ATENÇÃO!\n\n" +
+        "Deseja realmente zerar toda a arrecadação?\n\n" +
+        "Todas as quantidades serão apagadas."
     );
 
     if (!confirmar) return;
