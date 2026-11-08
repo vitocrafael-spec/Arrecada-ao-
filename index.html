@@ -3,215 +3,181 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090909">
-<title>INSANOS MC | Ação Social</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100000">
+<title>Insanos MC | Controle de Arrecadação</title>
 
 <style>
 :root {
-    --red: #bd142d;
-    --red-dark: #650b19;
+    --red: #a20d20;
+    --red-light: #df263d;
     --black: #090909;
-    --panel: #151515;
-    --white: #f5f5f5;
+    --panel: #171313;
+    --border: #382326;
+    --white: #fff;
     --gray: #aaa;
-    --line: #373737;
+    --green: #47c78b;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    background:
-        radial-gradient(ellipse at top, #281014 0%, #090909 55%);
+    background: var(--black);
     color: var(--white);
     font-family: Arial, sans-serif;
 }
 
-.container {
-    width: min(1120px, 94%);
-    margin: auto;
-}
-
-/* CABEÇALHO */
+/* CAPA */
 
 .hero {
+    min-height: 340px;
     position: relative;
-    min-height: 370px;
     background:
-        linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.58)),
-        url("icons/fundo-motos.jpg") center 45% / cover no-repeat;
-    border-bottom: 5px solid var(--red);
-}
-
-.hero:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg,#090909 0%,transparent 55%);
-    pointer-events: none;
+        linear-gradient(90deg,
+            rgba(0,0,0,.96),
+            rgba(15,0,0,.72),
+            rgba(0,0,0,.65)),
+        url("https://insanosmc.com.br/assets/img/banner/novo_banner.webp")
+        center 48% / cover no-repeat;
+    border-bottom: 4px solid var(--red);
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
-    min-height: 370px;
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 20px;
+    min-height: 340px;
     display: flex;
     align-items: center;
     gap: 35px;
-    padding: 35px 0;
 }
 
 .logo {
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
     object-fit: contain;
-    filter: drop-shadow(0 0 20px #000);
+    filter: drop-shadow(0 5px 15px #000);
+    flex-shrink: 0;
 }
 
 .hero-text h1 {
-    font-size: clamp(32px,5vw,55px);
-    font-weight: 1000;
-    letter-spacing: 3px;
-    text-shadow: 3px 4px 5px #000;
+    font-size: clamp(25px, 4vw, 43px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 3px 8px #000;
 }
 
-.hero-text h1 span { color: var(--red); }
-
-.hero-text h2 {
-    font-size: 15px;
-    letter-spacing: 4px;
-    margin-top: 8px;
+.hero-text h1 span {
+    color: var(--red-light);
 }
 
 .hero-text p {
-    color: #ccc;
-    margin-top: 15px;
+    color: #ddd;
+    margin-top: 12px;
+    font-size: 15px;
     line-height: 1.7;
-    font-size: 13px;
 }
 
-.ribbon {
+.hero-label {
     display: inline-block;
-    background: var(--red-dark);
-    border: 1px solid #e32b46;
-    padding: 9px 16px;
-    margin-top: 20px;
+    background: var(--red);
+    padding: 8px 14px;
+    border-radius: 4px;
+    margin-top: 18px;
     font-size: 11px;
     font-weight: bold;
-    letter-spacing: 2px;
-    transform: skew(-5deg);
-}
-
-/* FRASE */
-
-.motto {
-    background: #120d0e;
-    border-bottom: 1px solid #442027;
-    text-align: center;
-    padding: 15px;
-    color: #ddd;
-    font-size: 12px;
-    letter-spacing: 3px;
-    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* CONTEÚDO */
 
-main { padding: 35px 0 50px; }
-
-.heading {
-    margin-bottom: 22px;
-    border-left: 5px solid var(--red);
-    padding-left: 15px;
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 18px 50px;
 }
 
-.heading h2 {
-    font-size: 23px;
-    text-transform: uppercase;
-}
-
-.heading p {
-    color: var(--gray);
-    font-size: 13px;
-    margin-top: 7px;
-}
-
-/* INDICADORES */
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 16px;
-    margin-bottom: 25px;
-}
-
-.metric {
-    background: linear-gradient(145deg,#202020,#101010);
-    border: 1px solid #444;
-    border-top: 3px solid var(--red);
-    padding: 22px;
-    border-radius: 5px;
-    box-shadow: 0 8px 25px #0006;
-}
-
-.metric-label {
-    color: #aaa;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-.metric-value {
-    font-size: 36px;
-    font-weight: 900;
-    margin-top: 12px;
-}
-
-.metric.featured {
-    background: linear-gradient(135deg,#580d1b,#18090c);
-    border: 1px solid #a51b33;
-    border-top: 3px solid #e22a45;
-}
-
-.metric.featured .metric-value { color: #ff425f; }
-
-/* PAINEL */
-
-.panel {
-    background: linear-gradient(145deg,#191919,#101010);
-    border: 1px solid #3d3032;
-    border-radius: 7px;
-    padding: 25px;
-    margin-bottom: 22px;
-    box-shadow: 0 10px 30px #0005;
-}
-
-.panel-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid #442027;
-    padding-bottom: 15px;
+.section-title {
     margin-bottom: 20px;
 }
 
-.panel-title .number {
-    background: var(--red-dark);
-    border: 1px solid var(--red);
-    padding: 9px 12px;
-    font-weight: bold;
+.section-title h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+    border-left: 4px solid var(--red);
+    padding-left: 12px;
 }
 
-.panel-title h3 {
-    font-size: 16px;
+.section-title p {
+    color: var(--gray);
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.metric {
+    background: linear-gradient(145deg, #21191a, #120e0e);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 23px;
+}
+
+.metric-label {
+    color: var(--gray);
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.panel-title p {
+.metric-value {
+    font-size: 34px;
+    font-weight: 900;
+    margin-top: 12px;
+}
+
+.metric.highlight {
+    background: linear-gradient(135deg, #650b19, #24070c);
+    border-color: #a51a30;
+}
+
+.metric.highlight .metric-value {
+    color: #ff526b;
+    font-size: 42px;
+}
+
+/* PAINEL */
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 22px;
+}
+
+.panel h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.panel-description {
     color: var(--gray);
-    font-size: 11px;
-    margin-top: 5px;
+    font-size: 12px;
+    margin-top: 7px;
+    margin-bottom: 22px;
 }
 
 /* ALIMENTOS */
@@ -219,12 +185,13 @@ main { padding: 35px 0 50px; }
 .food-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 11px;
+    gap: 12px;
 }
 
 .food {
-    background: #202020;
-    border: 1px solid #393939;
+    background: #211a1b;
+    border: 1px solid #38282a;
+    border-radius: 8px;
     padding: 14px;
     display: flex;
     align-items: center;
@@ -233,9 +200,8 @@ main { padding: 35px 0 50px; }
     transition: .2s;
 }
 
-.food:hover, .food:focus-within {
-    border-color: var(--red);
-    background: #29191c;
+.food:focus-within {
+    border-color: var(--red-light);
 }
 
 .food-name {
@@ -250,10 +216,11 @@ main { padding: 35px 0 50px; }
 }
 
 .food input {
-    width: 85px;
+    width: 90px;
+    background: #0d0b0b;
+    border: 1px solid #503034;
+    border-radius: 6px;
     padding: 11px 5px;
-    border: 1px solid #555;
-    background: #090909;
     color: white;
     text-align: center;
     font-size: 17px;
@@ -261,209 +228,266 @@ main { padding: 35px 0 50px; }
     outline: none;
 }
 
-.food input:focus { border-color: #e52a45; }
+.food input:focus {
+    border-color: var(--red-light);
+}
 
-.unit { color: #aaa; font-size: 10px; }
+.unit {
+    color: #999;
+    font-size: 10px;
+}
 
 /* BOTÕES */
 
 .actions {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
     margin-top: 22px;
 }
 
 button {
-    border: 0;
-    padding: 14px 20px;
+    border: none;
+    border-radius: 7px;
+    padding: 13px 18px;
+    font-size: 12px;
     font-weight: bold;
-    font-size: 11px;
-    letter-spacing: 1px;
     cursor: pointer;
     transition: .2s;
 }
 
-button:hover { filter: brightness(1.3); transform: translateY(-2px); }
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
 
 .btn-red {
+    background: linear-gradient(120deg, #c21d36, #7b091b);
     color: white;
-    background: linear-gradient(120deg,#d01d39,#720b1c);
-    border-bottom: 3px solid #450711;
 }
 
 .btn-dark {
-    background: #292929;
+    background: #292020;
     color: white;
-    border: 1px solid #555;
+    border: 1px solid #533137;
 }
 
 .btn-reset {
-    background: #260d12;
-    color: #ff7588;
-    border: 1px solid #8b1c30;
+    background: #301217;
+    color: #ff7284;
+    border: 1px solid #852537;
 }
 
 /* RESULTADO */
 
 .result {
     background:
-        linear-gradient(135deg,#500c1b,#16090c);
-    border: 2px solid #9d1c32;
+        linear-gradient(135deg, #480a15, #16090c);
+    border: 1px solid #a21b31;
+    border-radius: 12px;
     padding: 30px;
     text-align: center;
-    box-shadow: inset 0 0 30px #0007;
 }
 
 .result-label {
-    color: #e9c5cb;
     font-size: 12px;
-    letter-spacing: 3px;
+    color: #e2b8be;
+    letter-spacing: 2px;
     font-weight: bold;
 }
 
 .result-number {
-    color: #ff435f;
-    font-size: 78px;
+    color: #ff4963;
+    font-size: 75px;
     font-weight: 900;
-    margin: 10px;
-    text-shadow: 0 0 20px #d51c3c55;
+    margin: 10px 0;
 }
 
 .result-caption {
     font-size: 13px;
-    letter-spacing: 2px;
+    color: #e2b8be;
 }
 
 .limiter {
-    background: #211719;
+    background: #24191b;
     border-left: 4px solid var(--red);
     padding: 17px;
+    border-radius: 7px;
     margin-top: 18px;
     font-size: 13px;
-    line-height: 1.8;
-    color: #ddd;
+    line-height: 1.7;
 }
 
-.limiter strong { color: #ff526b; }
+.limiter strong {
+    color: #ff6479;
+}
 
 /* SOBRAS */
 
-.leftovers { margin-top: 25px; }
+.leftovers {
+    margin-top: 25px;
+}
 
 .leftovers h4 {
-    font-size: 14px;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
+    font-size: 15px;
+    margin-bottom: 13px;
 }
 
 .leftover-row {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
     padding: 12px 5px;
-    border-bottom: 1px solid #383030;
+    border-bottom: 1px solid var(--border);
     font-size: 13px;
+    gap: 10px;
 }
 
-.leftover-row strong { color: #52d49a; }
+.leftover-row strong {
+    color: var(--green);
+}
 
 /* RODAPÉ */
 
 footer {
-    background: #0c0909;
-    border-top: 4px solid var(--red);
-    padding: 28px 15px;
+    background: #120d0e;
+    border-top: 2px solid var(--red);
+    padding: 25px;
     text-align: center;
-    color: #888;
+    color: #999;
     font-size: 11px;
-    line-height: 2;
-    letter-spacing: 1px;
+    line-height: 1.8;
 }
 
 footer strong {
-    color: white;
-    font-size: 16px;
+    color: #ddd;
 }
 
-/* CELULAR */
+/* RESPONSIVO */
 
 @media(max-width:650px) {
     .hero-content {
         flex-direction: column;
         text-align: center;
-        min-height: auto;
-        padding: 28px 0;
         gap: 15px;
+        padding: 25px 15px;
     }
 
-    .logo { width: 140px; height: 140px; }
+    .logo {
+        width: 145px;
+        height: 145px;
+    }
 
-    .dashboard { grid-template-columns: 1fr; gap: 10px; }
+    .hero {
+        min-height: auto;
+    }
 
-    .food-grid { grid-template-columns: 1fr; }
+    .hero-content {
+        min-height: auto;
+    }
 
-    .panel { padding: 17px; }
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 
-    .actions button { flex: 1; min-width: 130px; }
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
 
-    .result-number { font-size: 62px; }
+    .panel {
+        padding: 17px;
+    }
+
+    .actions button {
+        flex: 1;
+        min-width: 130px;
+    }
+
+    .result-number {
+        font-size: 60px;
+    }
 }
 
 /* IMPRESSÃO */
 
 @media print {
-    body { background: white; color: black; }
-    .actions { display: none; }
-    .panel,.metric,.food {
+    body {
         background: white;
         color: black;
-        border: 1px solid #aaa;
     }
-    .food input { color: black; background: white; }
-    .result { print-color-adjust: exact; }
-    footer { color: black; }
+
+    .hero {
+        background: #222;
+        print-color-adjust: exact;
+    }
+
+    .actions {
+        display: none;
+    }
+
+    .panel, .metric, .food {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+
+    .food input {
+        color: black;
+        background: white;
+    }
+
+    .result {
+        print-color-adjust: exact;
+    }
+
+    .leftover-row {
+        color: black;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- CAPA COM LOGO E IMAGEM -->
+
 <header class="hero">
-    <div class="container hero-content">
+
+    <div class="hero-content">
 
         <img
             class="logo"
-            src="icons/insanos-logo.png"
+            src="https://insanosmc.com.br/assets/img/escudo.png"
             alt="Escudo Insanos MC"
-            onerror="this.style.display='none'"
         >
 
         <div class="hero-text">
+
             <h1>INSANOS <span>MC</span></h1>
-            <h2>CONTROLE DE AÇÃO SOCIAL</h2>
 
             <p>
-                ARRECADAÇÃO DE ALIMENTOS<br>
-                CONTROLE E MONTAGEM DE CESTAS BÁSICAS
+                CONTROLE DE ARRECADAÇÃO<br>
+                GESTÃO DE ALIMENTOS E MONTAGEM DE CESTAS BÁSICAS
             </p>
 
-            <div class="ribbon">AÇÃO SOCIAL • SOLIDARIEDADE</div>
+            <div class="hero-label">
+                AÇÃO SOCIAL • SOLIDARIEDADE
+            </div>
+
         </div>
 
     </div>
-</header>
 
-<div class="motto">
-    NINGUÉM FICA PRA TRÁS
-</div>
+</header>
 
 <main class="container">
 
-    <div class="heading">
+    <div class="section-title">
         <h2>Painel de arrecadação</h2>
-        <p>Gestão dos alimentos recebidos pela ação social.</p>
+        <p>Controle os alimentos recebidos e acompanhe o resultado da campanha.</p>
     </div>
+
+    <!-- INDICADORES -->
 
     <section class="dashboard">
 
@@ -473,30 +497,31 @@ footer strong {
         </div>
 
         <div class="metric">
-            <div class="metric-label">Unidades arrecadadas</div>
+            <div class="metric-label">Total arrecadado</div>
             <div class="metric-value" id="totalUnidades">0</div>
         </div>
 
-        <div class="metric featured">
+        <div class="metric highlight">
             <div class="metric-label">Cestas possíveis</div>
             <div class="metric-value" id="miniCestas">0</div>
         </div>
 
     </section>
 
+    <!-- ARRECADAÇÃO -->
+
     <section class="panel">
 
-        <div class="panel-title">
-            <span class="number">01</span>
-            <div>
-                <h3>Controle de alimentos</h3>
-                <p>Informe a quantidade arrecadada de cada produto.</p>
-            </div>
-        </div>
+        <h3>📦 Alimentos arrecadados</h3>
+
+        <p class="panel-description">
+            Digite quantas unidades de cada alimento foram recebidas.
+        </p>
 
         <div class="food-grid" id="listaAlimentos"></div>
 
         <div class="actions">
+
             <button class="btn-red" onclick="calcular()">
                 ATUALIZAR CÁLCULO
             </button>
@@ -504,36 +529,47 @@ footer strong {
             <button class="btn-reset" onclick="zerar()">
                 ZERAR CONTAGEM
             </button>
+
         </div>
 
     </section>
 
+    <!-- RESULTADO -->
+
     <section class="panel">
 
-        <div class="panel-title">
-            <span class="number">02</span>
-            <div>
-                <h3>Resultado da ação social</h3>
-                <p>Quantidade de cestas completas disponíveis.</p>
-            </div>
-        </div>
+        <h3>🏆 Resultado da campanha</h3>
+
+        <p class="panel-description">
+            Quantidade de cestas básicas completas disponíveis.
+        </p>
 
         <div class="result">
-            <div class="result-label">VOCÊ CONSEGUE MONTAR</div>
+
+            <div class="result-label">
+                VOCÊ CONSEGUE MONTAR
+            </div>
+
             <div class="result-number" id="totalCestas">0</div>
-            <div class="result-caption">CESTAS BÁSICAS COMPLETAS</div>
+
+            <div class="result-caption">
+                CESTAS BÁSICAS COMPLETAS
+            </div>
+
         </div>
 
         <div class="limiter" id="limitador">
-            Aguardando as quantidades arrecadadas.
+            Informe as quantidades arrecadadas para visualizar o resultado.
         </div>
 
         <div class="leftovers" id="sobras"></div>
 
         <div class="actions">
+
             <button class="btn-dark" onclick="window.print()">
                 IMPRIMIR RELATÓRIO
             </button>
+
         </div>
 
     </section>
@@ -542,11 +578,12 @@ footer strong {
 
 <footer>
     <strong>INSANOS MC</strong><br>
-    CONTROLE DE ARRECADAÇÃO • AÇÃO SOCIAL<br>
-    NINGUÉM FICA PRA TRÁS
+    CONTROLE DE ARRECADAÇÃO E AÇÃO SOCIAL<br>
+    Ninguém fica pra trás.
 </footer>
 
 <script>
+
 const alimentos = [
     "Arroz",
     "Feijão",
@@ -564,19 +601,24 @@ const alimentos = [
 const lista = document.getElementById("listaAlimentos");
 
 function carregar() {
+
     alimentos.forEach((nome, i) => {
-        const valor = localStorage.getItem("arrecadacao_" + i) || "";
+
+        const valor =
+            localStorage.getItem("arrecadacao_" + i) || "";
 
         lista.innerHTML += `
             <div class="food">
+
                 <div>
                     <div class="food-name">${nome}</div>
                     <div class="food-number">
-                        PRODUTO ${String(i+1).padStart(2,"0")}
+                        PRODUTO ${String(i + 1).padStart(2,"0")}
                     </div>
                 </div>
 
                 <div style="display:flex;align-items:center;gap:6px">
+
                     <input
                         type="number"
                         min="0"
@@ -586,62 +628,102 @@ function carregar() {
                         value="${valor}"
                         oninput="calcular()"
                     >
+
                     <span class="unit">UN.</span>
+
                 </div>
+
             </div>
         `;
+
     });
+
 }
 
 function obterQuantidades() {
+
     return alimentos.map((nome, i) => {
-        const valor = Number(document.getElementById("qtd_" + i).value);
-        return Number.isFinite(valor) && valor > 0
-            ? Math.floor(valor)
-            : 0;
+
+        const valor = Number(
+            document.getElementById("qtd_" + i).value
+        );
+
+        if (!Number.isFinite(valor) || valor < 0) {
+            return 0;
+        }
+
+        return Math.floor(valor);
+
     });
+
 }
 
 function salvar() {
+
     alimentos.forEach((nome, i) => {
+
+        const campo = document.getElementById("qtd_" + i);
+
         localStorage.setItem(
             "arrecadacao_" + i,
-            document.getElementById("qtd_" + i).value
+            campo.value
         );
+
     });
+
 }
 
 function calcular() {
+
     const quantidades = obterQuantidades();
+
     salvar();
 
-    const total = quantidades.reduce((a,b) => a+b, 0);
-    const menor = Math.min(...quantidades);
+    const total = quantidades.reduce(
+        (a, b) => a + b, 0
+    );
 
     document.getElementById("totalUnidades").innerText =
         total.toLocaleString("pt-BR");
 
+    // Cada cesta precisa de 1 unidade de cada produto.
+
+    const menor = Math.min(...quantidades);
+
     document.getElementById("totalCestas").innerText = menor;
+
     document.getElementById("miniCestas").innerText = menor;
 
+    // Identifica os alimentos limitadores.
+
     const limitadores = alimentos.filter(
-        (nome,i) => quantidades[i] === menor
+        (nome, i) => quantidades[i] === menor
     );
 
     if (total === 0) {
+
         document.getElementById("limitador").innerHTML =
-            "Informe as quantidades para descobrir quantas cestas podem ser montadas.";
+            "Aguardando o cadastro das quantidades arrecadadas.";
+
     } else {
+
         document.getElementById("limitador").innerHTML = `
             <strong>ALIMENTO(S) QUE LIMITAM A MONTAGEM:</strong><br>
-            ${limitadores.join(", ")}<br>
-            Disponível: ${menor} unidade(s).
+            ${limitadores.join(", ")}
+            <br>
+            Quantidade disponível: ${menor} unidade(s).
         `;
+
     }
 
-    let html = "<h4>SALDO DOS ALIMENTOS APÓS A MONTAGEM</h4>";
+    // Calcula as sobras.
 
-    alimentos.forEach((nome,i) => {
+    let html = `
+        <h4>📊 SALDO DE ALIMENTOS APÓS A MONTAGEM</h4>
+    `;
+
+    alimentos.forEach((nome, i) => {
+
         const sobra = quantidades[i] - menor;
 
         html += `
@@ -650,26 +732,38 @@ function calcular() {
                 <strong>${sobra} unidade(s)</strong>
             </div>
         `;
+
     });
 
     document.getElementById("sobras").innerHTML = html;
+
 }
 
 function zerar() {
-    if (!confirm(
-        "Deseja realmente apagar todas as quantidades arrecadadas?"
-    )) return;
 
-    alimentos.forEach((nome,i) => {
+    const confirmar = confirm(
+        "ATENÇÃO!\n\n" +
+        "Deseja realmente zerar toda a arrecadação?\n\n" +
+        "Todas as quantidades serão apagadas."
+    );
+
+    if (!confirmar) return;
+
+    alimentos.forEach((nome, i) => {
+
         document.getElementById("qtd_" + i).value = "";
+
         localStorage.removeItem("arrecadacao_" + i);
+
     });
 
     calcular();
+
 }
 
 carregar();
 calcular();
+
 </script>
 
 </body>
